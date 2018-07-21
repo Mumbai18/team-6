@@ -21,6 +21,12 @@
         <activity android:name=".PatientDetails" />
         <activity android:name=".InventoryDetails" />
         <activity android:name=".Task"></activity>
+        <activity android:name=".MainOptions" />
+        <activity android:name=".VolunteerLoginActivity" />
+        <activity android:name=".DonorLoginActivity" />
+        <activity android:name=".DonorRegister" />
+        <activity android:name=".VolunteerRegister" />
+        <activity android:name=".PatientLoginActivity"></activity>
     </application>
 
 </manifest>
