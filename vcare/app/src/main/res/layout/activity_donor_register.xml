@@ -18,6 +18,11 @@
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donor Register"
+            android:textSize="20sp"/>
 
         <!-- Name Label -->
         <android.support.design.widget.TextInputLayout
