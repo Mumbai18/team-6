@@ -3,6 +3,7 @@ package com.example.tanuj.vcare;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,13 +14,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final User user = new User(MainActivity.this);
+        User user = new User(MainActivity.this);
+        Log.i("username",user.getName());
         if(user.getName().equals("")){
             Intent intent = new Intent(MainActivity.this, MainOptions.class);
             startActivity(intent);
         }
-//        Intent intent = new Intent(MainActivity.this, MainOptions.class);
-//        startActivity(intent);
     }
     public void onSignOut(){
         new User(MainActivity.this).removeUser();

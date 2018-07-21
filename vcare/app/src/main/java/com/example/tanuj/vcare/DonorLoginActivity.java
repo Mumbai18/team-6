@@ -158,6 +158,8 @@ public class DonorLoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
+        Intent intent = new Intent(DonorLoginActivity.this, MainActivity.class);
+        startActivity(intent);
         _loginButton.setEnabled(true);
         finish();
     }
