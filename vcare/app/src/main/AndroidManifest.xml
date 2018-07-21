@@ -27,6 +27,10 @@
         <activity android:name=".DonorRegister" />
         <activity android:name=".VolunteerRegister" />
         <activity android:name=".PatientLoginActivity"></activity>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_kgc7InV9JMJ1vE" />
     </application>
 
 </manifest>
