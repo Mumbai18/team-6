@@ -62,7 +62,7 @@ public class VolunteerLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), VolunteerRegister.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
                 finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
@@ -158,6 +158,8 @@ public class VolunteerLoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
+        Intent intent = new Intent(VolunteerLoginActivity.this, MainActivity.class);
+        startActivity(intent);
         _loginButton.setEnabled(true);
         finish();
     }
