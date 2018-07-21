@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tanuj.vcare">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,17 +21,19 @@
         <activity android:name=".MyPatients" />
         <activity android:name=".PatientDetails" />
         <activity android:name=".InventoryDetails" />
-        <activity android:name=".Task"></activity>
+        <activity android:name=".Task" />
         <activity android:name=".MainOptions" />
         <activity android:name=".VolunteerLoginActivity" />
         <activity android:name=".DonorLoginActivity" />
         <activity android:name=".DonorRegister" />
         <activity android:name=".VolunteerRegister" />
-        <activity android:name=".PatientLoginActivity"></activity>
+        <activity android:name=".PatientLoginActivity" />
 
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_test_kgc7InV9JMJ1vE" />
+
+        <activity android:name=".HallOfFameView"></activity>
     </application>
 
 </manifest>

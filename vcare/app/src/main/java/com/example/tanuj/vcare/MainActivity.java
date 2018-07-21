@@ -20,6 +20,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity implements PaymentResultListener {
 
     Button mPayButton;
+    Button mHallOfFame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,15 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
                 startPayment();
             }
         });
+        mHallOfFame = (Button)findViewById(R.id.button_hall_of_fame);
+        mHallOfFame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HallOfFameView.class);
+                startActivity(intent);
+            }
+        });
+
     }
     public void onSignOut(){
         new User(MainActivity.this).removeUser();
