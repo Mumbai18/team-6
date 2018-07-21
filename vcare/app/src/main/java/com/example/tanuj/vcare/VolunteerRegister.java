@@ -41,8 +41,10 @@ public class VolunteerRegister extends AppCompatActivity {
     @BindView(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
     @BindView(R.id.btn_signup)
     Button _signupButton;
-    @BindView(R.id.link_login)
-    TextView _loginLink;
+    @BindView(R.id.link_login) TextView _loginLink;
+    @BindView(R.id.input_location) TextView _locationText;
+    @BindView(R.id.input_preference) TextView _preference;
+    @BindView(R.id.input_phone_no) TextView _phoneno;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,10 @@ public class VolunteerRegister extends AppCompatActivity {
         final String name = _nameText.getText().toString();
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
+        final String reEnterPassword = _reEnterPasswordText.getText().toString();
+        final String phone_no = _phoneno.getText().toString();
+        final String location = _locationText.getText().toString();
+        final String preference = _preference.getText().toString();
 
         // TODO: Implement your own signup logic here.
 
@@ -119,6 +124,9 @@ public class VolunteerRegister extends AppCompatActivity {
                 params.put("name",name);
                 params.put("email",email);
                 params.put("password",password);
+                params.put("location",location);
+                params.put("preference",preference);
+                params.put("phoneno",phone_no);
                 return params;
             }
         };
