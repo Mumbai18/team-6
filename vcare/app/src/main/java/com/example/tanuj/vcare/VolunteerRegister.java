@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 public class VolunteerRegister extends AppCompatActivity {
 
     private static final String TAG = "VolunteerRegister";
-    String reg_url = "http://10.49.51.222/volley/login/register.php";
+    String reg_url = "http://10.49.51.222/volley/login/volunteer_registration.php";
     AlertDialog.Builder builder;
 
     @BindView(R.id.input_name)
