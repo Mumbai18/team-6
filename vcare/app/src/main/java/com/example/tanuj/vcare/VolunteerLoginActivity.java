@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 public class VolunteerLoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-    String login_url = "http://10.49.51.222/volley/login/login.php";
+    String login_url = "http://10.49.51.222/volley/login/volunteerlogin.php";
     AlertDialog.Builder builder;
 
     @BindView(R.id.input_email)

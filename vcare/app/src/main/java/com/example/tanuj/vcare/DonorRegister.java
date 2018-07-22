@@ -39,6 +39,9 @@ public class DonorRegister extends AppCompatActivity {
     @BindView(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
     @BindView(R.id.btn_signup) Button _signupButton;
     @BindView(R.id.link_login) TextView _loginLink;
+    @BindView(R.id.input_location) TextView _locationtext;
+    @BindView(R.id.input_aadhar) TextView _aadhar_no;
+    @BindView(R.id.input_dob) TextView _dob;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,9 @@ public class DonorRegister extends AppCompatActivity {
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
+        final String location = _locationtext.getText().toString();
+        final String aadhar = _aadhar_no.getText().toString();
+        final String dob = _dob.getText().toString();
 
         // TODO: Implement your own signup logic here.
 
@@ -115,6 +121,9 @@ public class DonorRegister extends AppCompatActivity {
                 params.put("name",name);
                 params.put("email",email);
                 params.put("password",password);
+                params.put("location",location);
+                params.put("aadhar",aadhar);
+                params.put("dob",dob);
                 return params;
             }
         };
