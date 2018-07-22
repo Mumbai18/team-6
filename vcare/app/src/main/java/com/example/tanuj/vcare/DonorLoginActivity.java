@@ -34,12 +34,10 @@ public class DonorLoginActivity extends AppCompatActivity {
     String login_url = "http://10.49.51.222/volley/login/login.php";
     AlertDialog.Builder builder;
 
-    @BindView(R.id.input_email)
-    EditText _emailText;
+    @BindView(R.id.input_email) EditText _emailText;
     @BindView(R.id.input_password) EditText _passwordText;
     @BindView(R.id.btn_login)
-    Button _loginButton;
-    @BindView(R.id.link_signup)
+    Button _loginButton;@BindView(R.id.link_signup)
     TextView _signupLink;
 
     @Override
