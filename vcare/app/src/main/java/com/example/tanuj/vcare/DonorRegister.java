@@ -148,6 +148,8 @@ public class DonorRegister extends AppCompatActivity {
     }
 
     public void onSignupSuccess() {
+        Intent intent = new Intent(DonorRegister.this, MakeDonation.class);
+        startActivity(intent);
         Toast.makeText(getBaseContext(), "Sign up Successful", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);

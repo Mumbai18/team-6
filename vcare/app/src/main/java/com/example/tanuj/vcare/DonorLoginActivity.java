@@ -51,7 +51,9 @@ public class DonorLoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                login();
+                //login();
+                Intent intent = new Intent(DonorLoginActivity.this, MakeDonation.class);
+                startActivity(intent);
             }
         });
 
@@ -156,7 +158,7 @@ public class DonorLoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-        Intent intent = new Intent(DonorLoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(DonorLoginActivity.this, MakeDonation.class);
         startActivity(intent);
         _loginButton.setEnabled(true);
         finish();

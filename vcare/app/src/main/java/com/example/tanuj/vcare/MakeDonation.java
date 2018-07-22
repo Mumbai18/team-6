@@ -1,10 +1,10 @@
 package com.example.tanuj.vcare;
 
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +19,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,16 +30,17 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MakeDonation extends AppCompatActivity {
+public class MakeDonation extends AppCompatActivity implements PaymentResultListener {
 
             TextView textViewDonorName;
             EditText editTextAmount;
             Spinner spinnerPurpose;
             Button buttonDonate;
             int key;
-            String url="http://10.49.162.27/donation.php";
+            String url="http://10.49.51.222/donation.php";
             String amount;
             Button buttonHistory;
+            Button mHallOfFame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,15 @@ public class MakeDonation extends AppCompatActivity {
         preference.add("Palliative Support");
         preference.add("Counseling");
         preference.add("No specific preference");
+
+        mHallOfFame = (Button)findViewById(R.id.button_hall_of_fame);
+        mHallOfFame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MakeDonation.this, HallOfFameView.class);
+                startActivity(intent);
+            }
+        });
 
 
         ArrayAdapter<String> subAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, preference);
@@ -101,8 +115,9 @@ public class MakeDonation extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(MakeDonation.this, "Thanks for your DOnation!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),MyPatients.class));
+                                //Toast.makeText(MakeDonation.this, "Thanks for your DOnation!", Toast.LENGTH_SHORT).show();
+                                //startActivity(new Intent(getApplicationContext(),MyPatients.class));
+                                startPayment();
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -119,10 +134,11 @@ public class MakeDonation extends AppCompatActivity {
                         Map<String,String> params=new HashMap<String, String>();
 
 
-                        params.put("ID","2");
+                        params.put("id","2");
                         params.put("amount",amount);
-                        params.put("donation_date",formattedDate);
-                        params.put("donor_id","3");
+                        params.put("date",formattedDate);
+                        params.put("purpose","Funding");
+                        params.put("d_id","3");
 
 
                         return params;
@@ -135,7 +151,42 @@ public class MakeDonation extends AppCompatActivity {
             }
         });
 
+    }
 
+    private void startPayment() {
+        int amount = 10; //amount to deduce
+
+        Checkout checkout = new Checkout();
+
+        //set app logo here
+        checkout.setImage(R.mipmap.ic_launcher);
+
+        final Activity activity = this;
+
+
+        //Pass your payment options to the Razorpay Checkout as a JSONObject
+        try {
+            JSONObject options = new JSONObject();
+
+            //Use the same name fields
+            options.put("name", "Merchant Name");
+            options.put("description", "Order #123456");
+            options.put("currency", "INR");
+            options.put("amount", amount * 100);
+            checkout.open(activity, options);
+        } catch(Exception e) {
+            Log.e("PAY", "Error in starting Razorpay Checkout", e);
+        }
+    }
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        Toast.makeText(MakeDonation.this,"Payment Successful",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Toast.makeText(MakeDonation.this,"Payment Failure",Toast.LENGTH_LONG).show();
 
     }
 }
