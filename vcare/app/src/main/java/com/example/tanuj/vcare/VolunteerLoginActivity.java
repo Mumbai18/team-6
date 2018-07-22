@@ -158,6 +158,8 @@ public class VolunteerLoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
+        Intent intent = new Intent(VolunteerLoginActivity.this, MainActivity.class);
+        startActivity(intent);
         _loginButton.setEnabled(true);
         finish();
     }
