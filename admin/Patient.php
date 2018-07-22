@@ -1,4 +1,5 @@
-
+<?php require_once ("db_connection.php");?>
+<?php require_once ("funtions.php")?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -69,7 +70,9 @@
                     <li><a href="Programs.php"><i class="glyphicon glyphicon-book"></i>Programs</a></li>
                     <li><a href="Budget.php"><i class="glyphicon glyphicon-book"></i> Budget</a></li>
                     <li><a href="Inventory.php"><i class="glyphicon glyphicon-ban-circle"></i>Inventory</a></li>
-                   
+                    <li ><a href="mail.php"><i class="fas fa-envelope"></i>Mail</a></li>
+
+
 
 
                 </ul>
@@ -87,14 +90,27 @@
 							<tr>
 								<th>Name</th>
 								<th>Gender</th>
-								<th>Cancer Type</th>
-								<th>Hospital Name</th>
+                                <th>Hospital Name</th>
+                                <th>Cancer Type</th>
 								<th>Program Type</th>
                 
 							</tr>
 						</thead>
 						<tbody>
-            
+
+                        <tr>
+                            <?php $result_set=find_patients();
+                            while($row=mysqli_fetch_assoc($result_set)){?>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['gender']; ?></td>
+                            <td><?php echo $row['hospital']; ?></td>
+                            <td><?php echo $row['cancer-type']; ?></td>
+                            <td><?php echo $row['program-type']; ?></td>
+
+                        </tr>
+                        <?php
+                        }
+                        ?>
 						</tbody>
 					</table>
   				</div>

@@ -64,13 +64,13 @@
 		  <div class="col-md-2">
 
         <div class="sidebar content-box" style="display: block;">
-            <h3><a><i class="fas fa-angle-double-left" style="color: black"></i>Donor</a></h3>
+            <h3><a href="Donor.php"><i class="fas fa-angle-double-left" style="color: black"></i>Donor</a></h3>
 
             <!--           </li> <a><i class="fas fa-angle-double-left" style="color: black"></i></a>-->
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li><a href="Donor.php"><i class="glyphicon glyphicon-home"></i>History of Transaction</a></li>
-                    <li><a href="Volunteer.php"><i class="glyphicon glyphicon-user"></i>Rewards</a></li>
+                    <li><a href="donor-transaction-details.php"><i class="glyphicon glyphicon-home"></i>History of Transaction</a></li>
+                    <li class="current"><a href="donor-rewards.php"><i class="glyphicon glyphicon-user"></i>Rewards</a></li>
 
                    
 

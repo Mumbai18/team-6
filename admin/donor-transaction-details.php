@@ -1,4 +1,5 @@
-
+<?php require_once ("db_connection.php")?>
+<?php require_once ("funtions.php")?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -64,13 +65,13 @@
 		  <div class="col-md-2">
 
         <div class="sidebar content-box" style="display: block;">
-            <h3><a><i class="fas fa-angle-double-left" style="color: black"></i>Donor</a></h3>
+            <h3><a href="Donor.php"><i class="fas fa-angle-double-left" style="color: black"></i>Donor</a></h3>
 
             <!--           </li> <a><i class="fas fa-angle-double-left" style="color: black"></i></a>-->
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li><a href="Donor.php"><i class="glyphicon glyphicon-home"></i>History of Transaction</a></li>
-                    <li><a href="Volunteer.php"><i class="glyphicon glyphicon-user"></i>Rewards</a></li>
+                    <li class="current"><a href="Donor.php"><i class="glyphicon glyphicon-home"></i>History of Transaction</a></li>
+                    <li><a href="donor-rewards.php"><i class="glyphicon glyphicon-user"></i>Rewards</a></li>
 
                    
 
@@ -82,15 +83,15 @@
 
   			<div class="content-box-large">
   				<div class="panel-heading">
-					<div class="panel-title">Patient Details</div>
+					<div class="panel-title">Donor transaction details</div>
 				</div>
   				<div class="panel-body" style="overflow-y:auto;">
   					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
 						<thead>
 							<tr>
-								<th>Date</th>
-								<th>Purpose</th>
-								<th>Amount</th>
+								<th>amount</th>
+								<th>date</th>
+								<th>purpose</th>
 
 
 
@@ -98,16 +99,27 @@
                             </tr>
 						</thead>
 						<tbody>
-
-                        <tr>
-                            <td><a href="Patient.php">12-08-17</a></td>
-                            <td>Donation</td>
-                            <td>3000/-</td>
-
-
+                        <?php
+                        if(isset($_GET['id']))
+                        {
+                            $result_set=find_donor_by_id($_GET['id']);
+                            while($row=mysqli_fetch_assoc($result_set)) {
 
 
-                        </tr>
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['amount'];?></td>
+                                    <td><?php echo $row['date'];?></td>
+                                    <td><?php echo $row['purpose'];?></td>
+
+
+                                </tr>
+                                <?php
+                            }
+                        }
+
+                        ?>
+
             
 						</tbody>
 					</table>

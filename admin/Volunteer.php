@@ -1,3 +1,5 @@
+<?php require_once("db_connection.php");?>
+<?php require_once("funtions.php");?>
 
 <!DOCTYPE html>
 <html>
@@ -63,13 +65,15 @@
         <div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li><a href="Donor.php.php"><i class="glyphicon glyphicon-home"></i> Donor</a></li>
+                    <li><a href="Donor.php"><i class="glyphicon glyphicon-home"></i> Donor</a></li>
                     <li class="current" ><a href="Volunteer.php"><i class="glyphicon glyphicon-user"></i>Volunteer</a></i> 
                     <li><a href="Patient.php"><i class="glyphicon glyphicon-user"></i>Patient</a></i> 
                     <li><a href="Programs.php"><i class="glyphicon glyphicon-user"></i> Programs</a></li>
-                    <li><a href="Budget.php"><i class="glyphicon glyphicon-book"></i> Budget</a></li>
+                    <li><a href="budget.php"><i class="glyphicon glyphicon-book"></i> Budget</a></li>
                     <li><a href="Inventory.php"><i class="glyphicon glyphicon-ban-circle"></i>Inventory</a></li>
-                   
+                    <li ><a href="mail.php"> <i class="fas fa-envelope">  Mail</i></a></li>
+
+
 
                 </ul>
              </div>
@@ -85,12 +89,34 @@
 							<tr>
 								<th>Name</th>
 								<th>Email Id</th>
-								<th>Phone No</th>
-								<th>Reference</th>
-                                                                <th>Location</th>
+								<th>Password</th>
+								<th>location</th>
+                                <th>preference</th>
+                                <th>Phone no</th>
                 
 							</tr>
 						</thead>
+
+                        <tbody>
+                        <?php $result_set=find_volunteer(); ?>
+                        <?php while($row= mysqli_fetch_assoc($result_set)) { ?>
+                            <tr>
+                                <td><a href="volunteer-patients.php?id=<?php echo $row['id'];?>"><?php echo $row['name']; ?></a></td>
+                                <td><?php echo $row['email'];?></td>
+                                <td><?php echo $row['password'];?></td>
+                                <td><?php echo $row['location'];?></td>
+                                <td><?php echo $row['preference'];?></td>
+                                <td><?php echo $row['phone-no'];?></td>
+
+
+
+
+
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        </tbody>
 					</table>
   				</div>
   			</div>

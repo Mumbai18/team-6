@@ -1,4 +1,5 @@
-
+<?php require_once("db_connection.php");?>
+<?php require_once("funtions.php");?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -63,13 +64,15 @@
         <div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li><a href="Donor.php"><i class="glyphicon glyphicon-home"></i>Donor</a></li>
+                    <li class="current"><a href="Donor.php"><i class="glyphicon glyphicon-home"></i>Donor</a></li>
                     <li><a href="Volunteer.php"><i class="glyphicon glyphicon-user"></i>Volunteer</a></li>
-                    <li class="current" ><a href="Patient.php"><i class="glyphicon glyphicon-user"></i>Patient</a></li>
+                    <li><a href="Patient.php"><i class="glyphicon glyphicon-user"></i>Patient</a></li>
                     <li><a href="Programs.php"><i class="glyphicon glyphicon-book"></i>Programs</a></li>
-                    <li><a href="Budget.php"><i class="glyphicon glyphicon-book"></i> Budget</a></li>
+                    <li><a href="budget.php"><i class="glyphicon glyphicon-book"></i> Budget</a></li>
                     <li><a href="Inventory.php"><i class="glyphicon glyphicon-ban-circle"></i>Inventory</a></li>
-                   
+                    <li ><a href="mail.php"> <i class="fas fa-envelope">  Mail</i></a></li>
+
+
 
 
                 </ul>
@@ -86,10 +89,10 @@
 						<thead>
 							<tr>
 								<th>Name</th>
+                                <th>Email-Id</th>
+                                <th>Password</th>
 								<th>Location</th>
-								<th>purpose</th>
-								<th>Adhar Card Details</th>
-								<th>Email-Id</th>
+                                <th>Adhar Card Details</th>
                                 <th>DOB</th>
 
 
@@ -97,19 +100,22 @@
                             </tr>
 						</thead>
 						<tbody>
-
+                        <?php $result_set=find_donor(); ?>
+                        <?php while($row= mysqli_fetch_assoc($result_set)){?>
                         <tr>
-                            <td><a href="Patient.php">manisha</a></td>
-                            <td>ulhasnagar</td>
-                            <td>donation</td>
-                            <td>1234555</td>
-                            <td>manishadodeja</td>
-                            <td>29/09/97</td>
+                            <td><a href="donor-transaction-details.php?id=<?php echo $row['id'] ?>"><?php echo $row['name'];?></a></td>
+                            <td><?php echo $row['email'];?></td>
+                            <td><?php echo $row['password'];?></td>
+                            <td><?php echo $row['location'];?></td>
+                            <td><?php echo $row['aadhar-no'];?></td>
+                            <td><?php echo $row['dob'];?></td>
 
 
 
                         </tr>
-            
+                        <?php
+                        }
+                        ?>
 						</tbody>
 					</table>
   				</div>

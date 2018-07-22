@@ -1,3 +1,5 @@
+<?php require_once("db_connection.php");?>
+<?php require_once("funtions.php");?>
 
 <!DOCTYPE html>
 <html>
@@ -64,13 +66,13 @@
 		  <div class="col-md-2">
 
         <div class="sidebar content-box" style="display: block;">
-            <h3><a><i class="fas fa-angle-double-left" style="color: black"></i>Volunteer</a></h3>
+            <h3><a href="Volunteer.php"><i class="fas fa-angle-double-left" style="color: black"></i>Volunteer</a></h3>
 
             <!--           </li> <a><i class="fas fa-angle-double-left" style="color: black"></i></a>-->
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li><a href="Donor.php"><i class="glyphicon glyphicon-home"></i>Patients Assigned</a></li>
-                    <li><a href="Volunteer.php"><i class="glyphicon glyphicon-user"></i>Tasks Assigned</a></li>
+                    <li class="current"><a href="volunteer-patients.php"><i class="glyphicon glyphicon-home"></i>Patients Assigned</a></li>
+                    <li><a href="volunteer-tasks.php?id=<?php if(isset($_GET['id'])) echo $_GET['id'];?>"><i class="glyphicon glyphicon-user"></i>Tasks Assigned</a></li>
 
                    
 
@@ -90,8 +92,8 @@
 							<tr>
 								<th>Name</th>
 								<th>Gender</th>
-								<th>Cancer Type</th>
                                 <th>Hospital name</th>
+                                <th>Cancer Type</th>
                                 <th>Program Type</th>
 
 
@@ -102,22 +104,30 @@
                             </tr>
 						</thead>
 						<tbody>
+<?php
+                        if(isset($_GET['id']))
+                        {
+                        $result_set=find_patients_by_vid($_GET['id']);
+                        while($row=mysqli_fetch_assoc($result_set)) { ?>
+
+
 
                         <tr>
-                            <td><a href="Patient.php">manisha</a></td>
-                            <td>female</td>
-                            <td>Cancer</td>
-                            <td>leelavati</td>
-                            <td>abcd</td>
-
-
-
-
+                            <td><?php echo $row['name'];?></td>
+                            <td><?php echo $row['gender'];?></td>
+                            <td><?php echo $row['hospital'];?></td>
+                            <td><?php echo $row['cancer-type'];?></td>
+                            <td><?php echo $row['program-type'];?></td>
 
 
 
 
                         </tr>
+                        <?php
+                            }
+                        }
+
+                        ?>
             
 						</tbody>
 					</table>

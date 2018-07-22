@@ -1,4 +1,33 @@
+<?php require_once ("db_connection.php");?>
+<?php require_once ("funtions.php");?>
+<?php
 
+$v_id;
+if(isset($_GET['id']))
+{
+    $v_id=$_GET['id'];
+}
+else
+{
+    $v_id=NULL;
+}
+
+if(isset($_POST['submit']) && isset($_POST['v_id']))
+{
+
+    //echo"test";
+    $Query = "INSERT INTO tasks(task, v_id) values( ";
+    $Query .= "'" . $_POST['task'] . "', ";
+    $Query .=  $_POST['v_id'] .");" ;
+    //echo $Query;
+    //echo $_POST["gender"];
+    //$Query .= "'" . $_POST["gender"] . "' )";
+    //echo $Query;
+    $result = mysqli_query($conn, $Query);
+
+
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -64,13 +93,13 @@
 		  <div class="col-md-2">
 
         <div class="sidebar content-box" style="display: block;">
-            <h3><a><i class="fas fa-angle-double-left" style="color: black"></i>Volunteer</a></h3>
+            <h3><a href="Volunteer.php"><i class="fas fa-angle-double-left" style="color: black"></i>Volunteer</a></h3>
 
             <!--           </li> <a><i class="fas fa-angle-double-left" style="color: black"></i></a>-->
                 <ul class="nav">
                     <!-- Main menu -->
                     <li><a href="Donor.php"><i class="glyphicon glyphicon-home"></i>Patients Assigned</a></li>
-                    <li><a href="Volunteer.php"><i class="glyphicon glyphicon-user"></i>Tasks Assigned</a></li>
+                    <li class="current"><a href="Volunteer.php"><i class="glyphicon glyphicon-user"></i>Tasks Assigned</a></li>
 
                    
 
@@ -90,11 +119,7 @@
   					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Gender</th>
-								<th>Cancer Type</th>
-                                <th>Hospital name</th>
-                                <th>Program Type</th>
+								<td>Tasks</td>
 
 
 
@@ -104,22 +129,37 @@
                             </tr>
 						</thead>
 						<tbody>
+                        <?php
+                         if(isset($v_id))
+                             {
+                            $result_set = find_tasks_by_vid($v_id);
+                        while ($row = mysqli_fetch_assoc($result_set)) {
+                            ?>
+                            <tr>
+                                <td><?php echo $row['task']; ?></td>
+                            </tr>
+                            <?php
 
-                        <tr>
-                            <td><a href="Patient.php">manisha</a></td>
-                            <td>female</td>
-                            <td>Cancer</td>
-                            <td>leelavati</td>
-                            <td>abcd</td>
+                        }
+                        }
+
+                         else {
+                             if (isset($_POST['v_id'])) {
+                                 $result_set = find_tasks_by_vid($_POST['v_id']);
+                                 while ($row = mysqli_fetch_assoc($result_set)) {
+                                     ?>
+                                     <tr>
+                                         <td><?php echo $row['task']; ?></td>
+                                     </tr>
+                                     <?php
+
+                                 }
+                             }
+                         }
+                        ?>
 
 
 
-
-
-
-
-
-                        </tr>
             
 						</tbody>
 					</table>
@@ -143,11 +183,12 @@
                 </div>
                 <form action="volunteer-tasks.php" method="post">
                 <div class="modal-body">
-                    <input class="form-control" type="text" placeholder="assign a task" name="task" value=""></input>
+                    <input class="form-control" type="text" name="task" placeholder="assign a task" name="task" value=""></input>
+                    <input type="number" class="hidden" name="v_id" value=<?php echo $v_id;?>>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info" data-dismiss="modal">Submit</button>
+                    <button type="submit" name="submit" class="btn btn-info" >Submit</button>
                 </div>
                 </form>
             </div>
