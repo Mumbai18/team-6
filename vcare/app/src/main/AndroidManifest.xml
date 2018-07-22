@@ -34,7 +34,7 @@
             android:name="com.razorpay.ApiKey"
             android:value="rzp_test_kgc7InV9JMJ1vE" />
 
-        <activity android:name=".HallOfFameView">
+        <activity android:name=".HallOfFameView"/>
     </application>
 
 </manifest>

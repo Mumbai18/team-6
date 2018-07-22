@@ -26,7 +26,7 @@ public class History extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<Contact> arrayList=new ArrayList<>();
-    String url="http://10.49.162.27/history.php";
+    String url="http://10.49.51.222/history.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

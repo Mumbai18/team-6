@@ -151,6 +151,8 @@ public class VolunteerRegister extends AppCompatActivity {
     }
 
     public void onSignupSuccess() {
+        Intent intent = new Intent(VolunteerRegister.this, MyPatients.class);
+        startActivity(intent);
         Toast.makeText(getBaseContext(), "Sign up Successful", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);

@@ -1,8 +1,5 @@
 package com.example.tanuj.vcare;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +29,7 @@ public class InventoryDetails extends AppCompatActivity {
     int medicalkit=100;
     String abc;
     String last;
-    String url = "http://10.49.162.27/inventory_update.php";
+    String url = "http://10.49.51.222/inventory_update.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
