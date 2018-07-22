@@ -8,7 +8,9 @@
 
     <TextView
         android:id="@+id/textViewRemainingKits"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -25,7 +27,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Enter number of dispensed kits"
-        android:inputType="number" />
+         />
 
     <Button
         android:id="@+id/buttonUpdateInventory"

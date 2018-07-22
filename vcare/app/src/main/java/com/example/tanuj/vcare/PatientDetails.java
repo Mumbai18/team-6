@@ -80,7 +80,7 @@ public class PatientDetails extends AppCompatActivity {
 
 
                                 builder.setTitle("Server Response");
-                                builder.setMessage("Response: "+"Patient information added successfully!");
+                                builder.setMessage("Response: "+response);
                                 builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
